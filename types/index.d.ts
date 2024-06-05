@@ -5,6 +5,9 @@ export interface CreateUserParams {
     email: string;
     picture: string;
 }
+export interface GetCurrentUserParams {
+  clerkId: string
+}
 export interface CreatePodcastParams {
    user: string;
    path: string;

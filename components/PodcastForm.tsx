@@ -30,22 +30,27 @@ import { useState } from "react"
 
 import GeneratePodcast from "./GeneratePodcast"
 import dynamic from "next/dynamic"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useUser } from "@clerk/nextjs"
 const formSchema = z.object({
   podcastTitle: z.string().min(2),
   podcastDescription: z.string().min(2),
  
 })
-const PodcastForm = () => {
+const PodcastForm = ({userId}: {
+  userId: string
+}) => {
   const pathname = usePathname()
+  const router = useRouter()
   const user =   useUser()
   const voiceCategories = ["alloy" , "echo" , "fable" , "onyx" , "nova" , "shimmer"]
+
   const [imagePrompt,setImagePrompt] = useState("")
   const [imageUrl,setImageUrl] = useState("")
   const [uploadCareImage,setUploadCareImage] = useState("")
   const [voiceType,setVoiceType] = useState("")
   const [audio,setAudio] = useState<string | null>(null)
+  const [pending,setPending] = useState(false)
   const [audioDuration,setAudioDuration] = useState(0)
   const [voicePrompt,setVoicePrompt] = useState('')
  
@@ -57,10 +62,10 @@ const PodcastForm = () => {
     },
   })
  async function onSubmit(values: z.infer<typeof formSchema>) {
-   
+    setPending(true)
      try {
         const res = await createPodcast({
-           user: user.user?.id!,
+           user: userId,
            path: pathname,
            podcastDescription: values.podcastDescription,
            podcastTitle: values.podcastTitle,
@@ -73,10 +78,24 @@ const PodcastForm = () => {
            voicePrompt: voicePrompt
 
         })
-         console.log(res, "res")
+        router.push('/')
+         values.podcastDescription = "";
+         values.podcastTitle = "";
+         setAudio("")
+         setAudioDuration(0)
+         setImagePrompt("")
+         setVoicePrompt("")
+         setVoiceType("")
+         setImageUrl("")
+         setUploadCareImage("")
+      
+
      } catch (error) {
        console.log(error)
-  }}
+  } finally {
+    setPending(false)
+  }
+}
   return (
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -147,7 +166,7 @@ const PodcastForm = () => {
       imagePrompt={imagePrompt}
       setImagePrompt={setImagePrompt} />
       <Button className="text-white-1 bg-orange-1 w-full transition-all
-       duration-500 hover:bg-black-1 " type="submit">Submit & Publish Podcast</Button>
+       duration-500 hover:bg-black-1 " type="submit">{pending ? "pending..." : "Submit & Publish Podcast"} </Button>
     </form>
   </Form>
   )

@@ -1,6 +1,6 @@
 "use server"
 import { connectToDb } from "@/db";
-import { CreateUserParams, DeleteUserParams, UpdateUserParams } from "@/types";
+import { CreateUserParams, DeleteUserParams, GetCurrentUserParams, UpdateUserParams } from "@/types";
 import User from "@/schemas/userSchema";
 import mongoose from "mongoose";
 import { revalidatePath } from "next/cache";
@@ -41,6 +41,18 @@ export const deleteUser = async(params:DeleteUserParams)=> {
    } catch (error) {
     console.log(error)
    }
+}
+export const getCurrentUser = async(params:GetCurrentUserParams) =>{
+  const { clerkId } = params;
+  try {
+     const user = await User.findOne({clerkId})
+     if(!user) {
+      throw new Error('User not found')
+     }
+     return {user }
+  } catch (error) {
+     console.log(error)
+  }
 }
 // const crypto = require('crypto');
 
