@@ -3,6 +3,7 @@ import PodcastCard from '@/components/PodcastCard'
 import SearchBar from '@/components/SearchBar'
 import { Button } from '@/components/ui/button'
 import { podcastData } from '@/contants'
+
 import Image from 'next/image'
 import React from 'react'
 

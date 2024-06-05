@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 const PodcastSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
+       
         required: true
     },
     podcastTitle: {
@@ -31,18 +31,11 @@ const PodcastSchema = new mongoose.Schema({
     voicePrompt: {
         type: String
     },
-    authorImageUrl: {
-        type: String,
-    },
+    
     audioUrl: {
         type: String
     },
-    authorId:  {
-        type: String
-    },
-    authorName: {
-        type: String
-    }
+   
 
 })
 const Podcast = mongoose.models.Podcast || mongoose.model("Podcast", PodcastSchema)

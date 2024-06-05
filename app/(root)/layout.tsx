@@ -5,6 +5,7 @@ import React from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import RightSidebar from '@/components/RightSidebar'
 import BottomPlayer from '@/components/BottomPlayer'
+
 const RootLayout = ({children}: { children: React.ReactNode}) => {
   return (
     <div className='relative flex flex-col'>

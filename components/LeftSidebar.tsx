@@ -7,6 +7,7 @@ import { sidebarLinks } from '@/contants'
 import { usePathname, useRouter } from 'next/navigation'
 import { SignedIn, SignedOut, useClerk } from '@clerk/nextjs'
 import { Button } from './ui/button'
+
 const LeftSidebar = () => {
   const pathname = usePathname()
   const { signOut } = useClerk();
@@ -17,7 +18,7 @@ const LeftSidebar = () => {
     '>
        <nav className='flex flex-col gap-6'>
              <Link  className='flex items-center pb-10 max-lg:justify-center  gap-2' href="/">
-                  <Image src="/icons/logo.svg" alt="Mr podcast" width={40} height={40} className='object-contain' />
+                  <Image  src="/icons/logo.svg" alt="Mr podcast" width={40} height={40} className='object-contain' />
                   <h2 className='text-[24px] font-extrabold leading-[32px] max-lg:hidden text-white-1'>Mr Podcast</h2>
              </Link>
              <div className=''>

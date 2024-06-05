@@ -1,3 +1,4 @@
+"use server"
 import { connectToDb } from "@/db";
 import { CreateUserParams, DeleteUserParams, UpdateUserParams } from "@/types";
 import User from "@/schemas/userSchema";
@@ -41,3 +42,16 @@ export const deleteUser = async(params:DeleteUserParams)=> {
     console.log(error)
    }
 }
+// const crypto = require('crypto');
+
+// const algorithm = 'aes-256-cbc';
+// const key = crypto.randomBytes(32); // Secret key (should be stored securely)
+// const iv = crypto.randomBytes(16);  // Initialization vector
+
+// // Encrypt function
+// const encrypt = (text) => {
+//   const cipher = crypto.createCipheriv(algorithm, Buffer.from(key), iv);
+//   let encrypted = cipher.update(text);
+//   encrypted = Buffer.concat([encrypted, cipher.final()]);
+//   return iv.toString('hex') + ':' + encrypted.toString('hex');
+// };

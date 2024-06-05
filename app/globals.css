@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.my-config {
+  --darkmode: 1;
+  --h-accent: 223;
+  --s-accent: 100%;
+  --l-accent: 61%;
+}
 * {
   margin: 0;
   padding: 0;

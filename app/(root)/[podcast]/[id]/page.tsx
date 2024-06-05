@@ -2,6 +2,7 @@ import EmptyShiit from '@/components/EmptyShiit'
 import PodcastCard from '@/components/PodcastCard'
 import PodcastDetailsPlayer from '@/components/PodcastDetailsPlayer'
 import { podcastData } from '@/contants'
+
 import Image from 'next/image'
 import React from 'react'
 

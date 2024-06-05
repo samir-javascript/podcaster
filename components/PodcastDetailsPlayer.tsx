@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+
 const PodcastDetailsPlayer = () => {
   return (
     <div className='flex relative w-full justify-between max-md:justify-center'>
